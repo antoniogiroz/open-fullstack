@@ -1,7 +1,8 @@
-export const Part = ({ part, exercises }) => {
+export const Part = ({ part }) => {
+  const { name, exercises } = part;
   return (
     <p>
-      {part} {exercises}
+      {name} {exercises}
     </p>
   );
 };
