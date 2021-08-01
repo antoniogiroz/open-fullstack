@@ -3,6 +3,15 @@ export const Statistics = ({ good, neutral, bad }) => {
   const average = (good - bad) / all || 0;
   const positive = (good / all) * 100 || 0;
 
+  if (all === 0) {
+    return (
+      <div>
+        <h2>Statistics</h2>
+        <p>No feedback given</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h2>Statistics</h2>
