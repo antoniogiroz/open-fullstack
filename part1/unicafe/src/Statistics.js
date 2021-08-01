@@ -1,3 +1,5 @@
+import { Statistic } from './Statistic';
+
 export const Statistics = ({ good, neutral, bad }) => {
   const all = good + neutral + bad;
   const average = (good - bad) / all || 0;
@@ -16,12 +18,12 @@ export const Statistics = ({ good, neutral, bad }) => {
     <div>
       <h2>Statistics</h2>
       <ul>
-        <li>Good: {good}</li>
-        <li>Neutral: {neutral}</li>
-        <li>Bad: {bad}</li>
-        <li>All: {all}</li>
-        <li>Average: {average}</li>
-        <li>Positive: {positive} %</li>
+        <Statistic text="Good" value={good} />
+        <Statistic text="Neutral" value={neutral} />
+        <Statistic text="Bad" value={bad} />
+        <Statistic text="All" value={all} />
+        <Statistic text="Average" value={average} />
+        <Statistic text="Positive" value={`${positive} %`} />
       </ul>
     </div>
   );
