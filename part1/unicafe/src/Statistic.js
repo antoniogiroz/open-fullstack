@@ -1,7 +1,8 @@
 export const Statistic = ({ text, value }) => {
   return (
-    <li>
-      {text}: {value}
-    </li>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
   );
 };

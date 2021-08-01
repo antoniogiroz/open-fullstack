@@ -17,14 +17,16 @@ export const Statistics = ({ good, neutral, bad }) => {
   return (
     <div>
       <h2>Statistics</h2>
-      <ul>
-        <Statistic text="Good" value={good} />
-        <Statistic text="Neutral" value={neutral} />
-        <Statistic text="Bad" value={bad} />
-        <Statistic text="All" value={all} />
-        <Statistic text="Average" value={average} />
-        <Statistic text="Positive" value={`${positive} %`} />
-      </ul>
+      <table>
+        <tbody>
+          <Statistic text="Good" value={good} />
+          <Statistic text="Neutral" value={neutral} />
+          <Statistic text="Bad" value={bad} />
+          <Statistic text="All" value={all} />
+          <Statistic text="Average" value={average} />
+          <Statistic text="Positive" value={`${positive} %`} />
+        </tbody>
+      </table>
     </div>
   );
 };
