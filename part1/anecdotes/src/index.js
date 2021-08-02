@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { MostVoted } from './MostVoted';
 
 const anecdotes = [
   'If it hurts, do it more often',
@@ -14,13 +15,18 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-const App = (props) => {
+const App = ({ anecdotes }) => {
   const [selected, setSelected] = useState(0);
-  const [points, setPoints] = useState([]);
+  const [points, setPoints] = useState({});
 
   const selectedPoints = () => {
     return points[selected] || 0;
   };
+
+  const mostVoted = Object.entries(points).reduce(
+    (maxIndex, [key, value]) => (points[maxIndex] > value ? maxIndex : key),
+    undefined
+  );
 
   const handleNext = () => {
     setSelected(getRandomInt(0, anecdotes.length - 1));
@@ -29,16 +35,21 @@ const App = (props) => {
   const handleVote = () => {
     setPoints({
       ...points,
-      [selected]: selectedPoints() + 1,
+      [+selected]: selectedPoints() + 1,
     });
   };
 
   return (
     <div>
-      <div>{props.anecdotes[selected]}</div>
+      <h1>Anecdote of the day</h1>
+      <div>{anecdotes[selected]}</div>
       <div>has {selectedPoints()} votes</div>
       <button onClick={handleNext}>Next anecdote</button>
       <button onClick={handleVote}>Vote anecdote</button>
+
+      {mostVoted !== undefined ? (
+        <MostVoted anecdote={anecdotes[mostVoted]} />
+      ) : null}
     </div>
   );
 };
