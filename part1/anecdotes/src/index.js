@@ -16,15 +16,29 @@ function getRandomInt(min, max) {
 
 const App = (props) => {
   const [selected, setSelected] = useState(0);
+  const [points, setPoints] = useState([]);
 
-  const handleClick = () => {
+  const selectedPoints = () => {
+    return points[selected] || 0;
+  };
+
+  const handleNext = () => {
     setSelected(getRandomInt(0, anecdotes.length - 1));
+  };
+
+  const handleVote = () => {
+    setPoints({
+      ...points,
+      [selected]: selectedPoints() + 1,
+    });
   };
 
   return (
     <div>
       <div>{props.anecdotes[selected]}</div>
-      <button onClick={handleClick}>Next anecdote</button>
+      <div>has {selectedPoints()} votes</div>
+      <button onClick={handleNext}>Next anecdote</button>
+      <button onClick={handleVote}>Vote anecdote</button>
     </div>
   );
 };
