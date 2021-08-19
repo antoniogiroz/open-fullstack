@@ -1,9 +1,12 @@
 export const Total = ({ parts }) => {
-  const [part1, part2, part3] = parts;
+  const totalExercises = parts.reduce(
+    (total, part) => total + part.exercises,
+    0
+  );
 
   return (
     <p>
-      Number of exercises {part1.exercises + part2.exercises + part3.exercises}
+      <strong>Number of exercises {totalExercises}</strong>
     </p>
   );
 };
