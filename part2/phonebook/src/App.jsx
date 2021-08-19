@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 
 function App() {
   const [people, setPeople] = useState([
-    {
-      name: 'Arto Hellas',
-    },
+    { name: 'Arto Hellas', phone: '040-123456' },
+    { name: 'Ada Lovelace', phone: '39-44-5323523' },
+    { name: 'Dan Abramov', phone: '12-43-234345' },
+    { name: 'Mary Poppendieck', phone: '39-23-6423122' },
   ]);
   const [newName, setNewName] = useState('');
   const [newPhoneNumber, setNewPhoneNumber] = useState('');
+  const [search, setSearch] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,9 +31,23 @@ function App() {
     setNewPhoneNumber('');
   };
 
+  const filterPeople = people.filter((person) =>
+    person.name.toLowerCase().match(search.toLowerCase())
+  );
+
   return (
     <div>
-      <h2>PhoneBook</h2>
+      <h1>PhoneBook</h1>
+
+      <div>
+        Search:
+        <input
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+        />
+      </div>
+
+      <h2>Add new contact</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <div>
@@ -55,8 +71,9 @@ function App() {
           <button>Add</button>
         </div>
       </form>
-      <h2>Numbers</h2>
-      {people.map((person) => (
+
+      <h2>Contacts</h2>
+      {filterPeople.map((person) => (
         <p key={person.name}>
           {person.name} {person.phone}
         </p>
