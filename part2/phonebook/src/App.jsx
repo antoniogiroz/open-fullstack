@@ -7,6 +7,7 @@ function App() {
     },
   ]);
   const [newName, setNewName] = useState('');
+  const [newPhoneNumber, setNewPhoneNumber] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,9 +21,12 @@ function App() {
       ...people,
       {
         name: newName,
+        phone: newPhoneNumber,
       },
     ]);
+
     setNewName('');
+    setNewPhoneNumber('');
   };
 
   return (
@@ -30,12 +34,22 @@ function App() {
       <h2>PhoneBook</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name: </label>
-          <input
-            id="name"
-            value={newName}
-            onChange={(event) => setNewName(event.target.value)}
-          />
+          <div>
+            <label htmlFor="name">Name: </label>
+            <input
+              id="name"
+              value={newName}
+              onChange={(event) => setNewName(event.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="phone">Phone: </label>
+            <input
+              id="phone"
+              value={newPhoneNumber}
+              onChange={(event) => setNewPhoneNumber(event.target.value)}
+            />
+          </div>
         </div>
         <div>
           <button>Add</button>
@@ -43,7 +57,9 @@ function App() {
       </form>
       <h2>Numbers</h2>
       {people.map((person) => (
-        <p key={person.name}>{person.name}</p>
+        <p key={person.name}>
+          {person.name} {person.phone}
+        </p>
       ))}
     </div>
   );
