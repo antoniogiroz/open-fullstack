@@ -1,4 +1,8 @@
 export function CountryList({ countries, showCountry }) {
+  if (countries.length > 10) {
+    return <p>Too many matches. Please specify another filter.</p>;
+  }
+
   return (
     <div>
       {countries.map((country) => (

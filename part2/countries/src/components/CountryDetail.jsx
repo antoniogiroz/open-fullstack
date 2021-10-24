@@ -1,3 +1,5 @@
+import { CountryWeather } from './CountryWeather';
+
 export function CountryDetail({ country }) {
   return (
     <div>
@@ -12,12 +14,14 @@ export function CountryDetail({ country }) {
           <li key={lang}>{lang}</li>
         ))}
       </ul>
-
       <img
         width="300px"
         src={country.flags.svg}
         alt={`${country.name.common} flag`}
       />
+
+      <h2>Weather in {country.capital}</h2>
+      <CountryWeather capitalName={country.capital} />
     </div>
   );
 }
