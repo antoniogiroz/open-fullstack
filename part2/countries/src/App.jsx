@@ -17,6 +17,10 @@ function App() {
     }
   }, [search]);
 
+  const showCountry = (country) => {
+    setCountries([country]);
+  };
+
   return (
     <div>
       <label>
@@ -27,10 +31,11 @@ function App() {
       {countries.length > 10 && (
         <p>Too many matches. Please specify another filter.</p>
       )}
-      {countries.length === 1 ? (
-        <CountryDetail country={countries[0]} />
-      ) : (
-        <CountryList countries={countries} />
+
+      {countries.length === 1 && <CountryDetail country={countries[0]} />}
+
+      {countries.length > 1 && countries.length < 10 && (
+        <CountryList countries={countries} showCountry={showCountry} />
       )}
     </div>
   );
