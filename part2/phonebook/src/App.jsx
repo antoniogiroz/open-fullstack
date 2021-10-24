@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Filter } from './Filter';
 import { PersonForm } from './PersonForm';
 import { PersonList } from './PersonList';
 
 function App() {
-  const [people, setPeople] = useState([
-    { name: 'Arto Hellas', phone: '040-123456' },
-    { name: 'Ada Lovelace', phone: '39-44-5323523' },
-    { name: 'Dan Abramov', phone: '12-43-234345' },
-    { name: 'Mary Poppendieck', phone: '39-23-6423122' },
-  ]);
+  const [people, setPeople] = useState([]);
   const [search, setSearch] = useState('');
+
+  useEffect(async () => {
+    const { data } = await axios.get('http://localhost:3001/persons');
+    setPeople(data);
+  }, []);
 
   const addPerson = (person) => {
     setPeople([...people, person]);
